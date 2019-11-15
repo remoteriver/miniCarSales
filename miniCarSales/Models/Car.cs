@@ -1,4 +1,4 @@
-﻿using miniCarSales.Models.Interface;
+﻿using miniCarSales.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

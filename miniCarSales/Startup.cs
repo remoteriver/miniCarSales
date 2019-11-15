@@ -26,7 +26,7 @@ namespace miniCarSales
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<DataContext>(opt =>  opt.UseInMemoryDatabase("VehicleDb"));
+            services.AddDbContext<CarsContext>(opt =>  opt.UseInMemoryDatabase("VehicleDb"));
             services.AddHostedService<HostedSrvManager>();
             services.AddSignalR(hubOptions =>
             {

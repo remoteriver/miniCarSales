@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using miniCarSales.Interface;
 using miniCarSales.Models;
 using System;
 using System.Collections.Generic;
@@ -7,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace miniCarSales.Services
 {
-    public class DataContext : DbContext
+    public class CarsContext :  DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        private DbSet<Car> DataSet { get; set; }
+
+        public CarsContext(DbContextOptions<CarsContext> options) : base(options)
         {
         }
-
-        public DbSet<Car> DataSetCars { get; set; }
-
+        
         public void InitData()
         {
-            if (!DataSetCars.Any())
-                DataSetCars.Add(
+            if (!DataSet.Any())
+                DataSet.Add(
                 new Car
                 {
                     Id = 1,
@@ -29,6 +30,12 @@ namespace miniCarSales.Services
 
             SaveChanges();
         }
+        
+        public DbSet<Car> GetDataSet()
+        {
+            return DataSet;
+        }
+        
     }
 }
 

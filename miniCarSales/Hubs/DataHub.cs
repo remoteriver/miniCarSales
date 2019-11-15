@@ -9,9 +9,9 @@ namespace miniCarSales.Hubs
 {
     public class DataHub: Hub
     {
-        private readonly DataContext _db;
+        private readonly CarsContext _db;
 
-        public DataHub(DataContext db)
+        public DataHub(CarsContext db)
         {
             _db = db;
         }
@@ -24,7 +24,7 @@ namespace miniCarSales.Hubs
 
         public Task sendInitData()
         {
-            return Clients.All.SendAsync("InitData", _db.DataSetCars);
+            return Clients.All.SendAsync("InitData", _db.GetDataSet());
         }
 
         public Task NewMessage(long username, string message)

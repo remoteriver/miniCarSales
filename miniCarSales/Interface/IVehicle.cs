@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace miniCarSales.Models.Interface
+namespace miniCarSales.Interface
 {
-    interface IVehicle
+    public interface IVehicle
     {
         long Id { set; get; }
 

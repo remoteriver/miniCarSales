@@ -9,7 +9,16 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { AppMaterialModule } from './app.material.module';
+import { ListViewComponent } from './component/list-view/list-view.component';
+
+//angular material 
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+
+const materialModules = [
+  MatListModule,
+  MatCardModule
+];
 
 @NgModule({
   declarations: [
@@ -17,10 +26,11 @@ import { AppMaterialModule } from './app.material.module';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    ListViewComponent
   ],
   imports: [
-    AppMaterialModule,
+    materialModules,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,

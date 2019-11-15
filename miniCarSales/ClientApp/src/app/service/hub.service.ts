@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { BehaviorSubject } from 'rxjs';
+import { isNullOrUndefined } from 'util';
+import { VehiclesService } from './vehicles.service';
+import { CarsService } from './cars.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,7 @@ export class HubService {
   public hubConnected = new BehaviorSubject<boolean>(false);
   private hubPath: string = '/datahub';
 
-  constructor() {
+  constructor(private _carsSrv: CarsService) {
       this.hub = new signalR.HubConnectionBuilder()
         .withUrl(this.hubPath)
         .build();
@@ -21,9 +24,15 @@ export class HubService {
         });
 
 
-        this.hub.on('InitData', (data) => {
-          console.log("get InitData:" + data);
-        });
+    this.hub.on('InitData', (data) => {
+
+      console.log("get InitData:" + data);
+      if (!isNullOrUndefined(data)) {
+        this._carsSrv.initCollection(data);
+        }
+    });
+
+    this.StartHub();
   }
 
 

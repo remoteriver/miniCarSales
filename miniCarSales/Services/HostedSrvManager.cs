@@ -19,7 +19,7 @@ namespace miniCarSales.Services
         {
             using (var scope = _scopeFactory.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<CarsContext>();
                 dbContext.InitData();
             }
                 return Task.CompletedTask;

@@ -7,11 +7,10 @@ import { HubService } from '../service/hub.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private _hubSrv: HubService) {
+  constructor() {
 
   }
 
   ngOnInit() {
-    this._hubSrv.StartHub();
   }
 }

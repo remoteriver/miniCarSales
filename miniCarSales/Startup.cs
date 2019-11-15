@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using miniCarSales.Hubs;
+using miniCarSales.Services;
 
 namespace miniCarSales
 {
@@ -23,8 +26,12 @@ namespace miniCarSales
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("VehicleDb"));
-
+            services.AddDbContext<DataContext>(opt =>  opt.UseInMemoryDatabase("VehicleDb"));
+            services.AddHostedService<HostedSrvManager>();
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.EnableDetailedErrors = true;
+            });
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -47,14 +54,15 @@ namespace miniCarSales
             }
 
             app.UseHttpsRedirection();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            //Register SignalR Hub Route here
+            app.UseSignalR(routes =>
             {
-                var db = serviceScope.ServiceProvider.GetService<DataContext>();
-                DataSeed.Run(db);
-            }
+                routes.MapHub<DataHub>("/datahub");
+            });
 
             app.UseMvc(routes =>
             {
@@ -65,9 +73,6 @@ namespace miniCarSales
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
@@ -75,6 +80,7 @@ namespace miniCarSales
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
         }
     }
 }

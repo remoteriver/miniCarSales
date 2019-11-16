@@ -1,0 +1,12 @@
+.add-new-form
+{
+  width:400px;
+}
+
+.add-new-form mat-form-field{
+  width:100%;
+}
+
+.mat-radio-button {
+  margin: 0 12px;
+}

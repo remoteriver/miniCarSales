@@ -1,6 +1,9 @@
 <div *ngFor="let car of _carsSrv.cars | async">
-    <mat-card>
+  <mat-card class="car-card">
+    <img mat-card-image src="placeholder.jpg" alt="placeholder">
+    <mat-card-content>
       {{car.id}}
       {{car.make}}
-    </mat-card>
+    </mat-card-content>
+  </mat-card>
 </div>

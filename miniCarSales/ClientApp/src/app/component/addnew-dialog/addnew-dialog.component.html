@@ -1,0 +1,21 @@
+
+  <h2 mat-dialog-title>Add New</h2>
+  <mat-dialog-content>
+      <mat-radio-group>
+        <mat-radio-button value="Car">Car</mat-radio-button>
+        <mat-radio-button value="Boat">Boat</mat-radio-button>
+      </mat-radio-group>
+      <form class="add-new-form">
+        <mat-form-field>
+          <input matInput placeholder="Make">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Model">
+        </mat-form-field>
+
+      </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add</button>
+  </mat-dialog-actions>

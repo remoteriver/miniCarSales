@@ -32,6 +32,13 @@ export class HubService {
         }
     });
 
+
+      this.hub.onclose((error) => {
+
+          console.warn("connection closed:" + error);
+          this.hubConnected.next(false);
+      });
+
     this.startHub();
   }
 

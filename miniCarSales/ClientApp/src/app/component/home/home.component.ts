@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HubService } from '../service/hub.service';
+import { HubService } from '../../service/hub.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddnewDialogComponent } from '../component/addnew-dialog/addnew-dialog.component';
+import { AddnewDialogComponent } from '../addnew-dialog/addnew-dialog.component';
 
 
 @Component({

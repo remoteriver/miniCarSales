@@ -6,11 +6,10 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { HomeComponent } from './component/home/home.component';
 import { ListViewComponent } from './component/list-view/list-view.component';
+import { AddnewDialogComponent } from './component/addnew-dialog/addnew-dialog.component';
+import { HeaderComponent } from './component/header/header.component';
 
 //angular material 
 import { MatListModule } from '@angular/material/list';
@@ -20,10 +19,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 //flex-layout
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AddnewDialogComponent } from './component/addnew-dialog/addnew-dialog.component';
 
 const materialModules = [
   MatListModule,
@@ -32,18 +33,19 @@ const materialModules = [
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     ListViewComponent,
-    AddnewDialogComponent
+    AddnewDialogComponent,
+    HeaderComponent
   ],
     imports: [
         ReactiveFormsModule,
@@ -54,9 +56,7 @@ const materialModules = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full' }
     ])
   ],
     providers: [],

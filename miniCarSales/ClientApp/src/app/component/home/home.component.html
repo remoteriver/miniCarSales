@@ -1,0 +1,11 @@
+<div *ngIf="_hubSrv.hubConnected | async" fxLayout="column" fxLayoutGap="20px">
+  <div>
+    <button mat-button (click)="addNewCar()">Add New</button>
+  </div>
+  <div>
+    <app-list-view></app-list-view>
+  </div>
+</div>
+<div *ngIf="( _hubSrv.hubConnected | async ) == false">
+  <strong>Connection is Lost...Please wait and try again!</strong>
+</div>

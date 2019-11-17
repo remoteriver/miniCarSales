@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <mat-toolbar-row fxLayout="row" fxLayoutGap="20px">
+    <button mat-icon-button aria-label="Menu" [matMenuTriggerFor]="mainmenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Mini CarSales</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-menu #mainmenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon> directions_car</mat-icon>
+    <span>Add New Vehicle</span>
+  </button>
+</mat-menu>
+

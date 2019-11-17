@@ -10,8 +10,8 @@ import { CarsService } from './cars.service';
 })
 export class HubService {
 
-  public hub: signalR.HubConnection;
-  public hubConnected = new BehaviorSubject<boolean>(false);
+    private hub: signalR.HubConnection;
+    private hubConnected = new BehaviorSubject<boolean>(false);
   private hubPath: string = '/datahub';
 
   constructor(private _carsSrv: CarsService) {
@@ -32,11 +32,11 @@ export class HubService {
         }
     });
 
-    this.StartHub();
+    this.startHub();
   }
 
 
-  StartHub(): Promise<void> {
+  startHub(): Promise<void> {
     return this.hub.start()
       .then(() => {
         this.hubConnected.next(true);
@@ -46,5 +46,9 @@ export class HubService {
         this.hubConnected.next(false);
         console.warn('Connection failed.');
       });
-  }
+    }
+
+    sendData(api:string,arg:any) {
+        this.hub.send(api, arg).then();
+    }
 }

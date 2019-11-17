@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using miniCarSales.Models;
 using miniCarSales.Services;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,20 @@ namespace miniCarSales.Hubs
 
         public override Task OnConnectedAsync()
         {
-            sendInitData();
+            SendInitData();
             return base.OnConnectedAsync();
         }
 
-        public Task sendInitData()
+        public Task SendInitData()
         {
+            return Clients.All.SendAsync("InitData", _db.GetDataSet());
+        }
+
+        public Task AddNewVehicle(Car newcar)
+        {
+            _db.Add(newcar);
+            //newcar.Id = 
+            _db.SaveChanges();
             return Clients.All.SendAsync("InitData", _db.GetDataSet());
         }
 

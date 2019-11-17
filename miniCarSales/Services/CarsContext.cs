@@ -10,7 +10,7 @@ namespace miniCarSales.Services
 {
     public class CarsContext :  DbContext
     {
-        private DbSet<Car> DataSet { get; set; }
+        private DbSet<Car> DataSetCars { get; set; }
 
         public CarsContext(DbContextOptions<CarsContext> options) : base(options)
         {
@@ -18,11 +18,10 @@ namespace miniCarSales.Services
         
         public void InitData()
         {
-            if (!DataSet.Any())
-                DataSet.Add(
+            if (!DataSetCars.Any())
+                DataSetCars.Add(
                 new Car
                 {
-                    Id = 1,
                     VehicleType = "SUV",
                     Make = "mercedes-benz",
                     Model = "GLA200"
@@ -33,7 +32,7 @@ namespace miniCarSales.Services
         
         public DbSet<Car> GetDataSet()
         {
-            return DataSet;
+            return DataSetCars;
         }
         
     }

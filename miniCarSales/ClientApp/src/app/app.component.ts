@@ -9,7 +9,7 @@ import { HubService } from './service/hub.service';
 export class AppComponent {
   title = 'app';
 
-  constructor(private _hubSrv: HubService) {
+  constructor() {
 
   }
 }

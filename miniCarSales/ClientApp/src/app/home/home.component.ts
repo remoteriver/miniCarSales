@@ -10,7 +10,10 @@ import { AddnewDialogComponent } from '../component/addnew-dialog/addnew-dialog.
 })
 export class HomeComponent implements OnInit {
 
-    constructor(public _dialog: MatDialog) {
+    constructor(
+        private _hubSrv: HubService,
+        private _dialog: MatDialog
+    ) {
 
   }
 
@@ -20,7 +23,7 @@ export class HomeComponent implements OnInit {
     addNewCar() {
         const dialogRef = this._dialog.open(AddnewDialogComponent, {
             width: 'auto',
-            data: { }
+            data: this._hubSrv
         });
 
         dialogRef.afterClosed().subscribe(result => {

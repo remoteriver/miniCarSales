@@ -13,11 +13,10 @@ export class ListViewComponent implements OnInit {
 
   private subs: Subscription[] = [];
 
-  constructor(private _carsSrv:CarsService) { }
+    constructor(private _carsSrv: CarsService) { }
 
   ngOnInit() {
     this.subs.push(
-      //this._carsSrv.cars.subscribe(next=>)
     )
   }
 

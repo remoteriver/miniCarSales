@@ -11,8 +11,7 @@ import { AddnewDialogComponent } from '../addnew-dialog/addnew-dialog.component'
 export class HomeComponent implements OnInit {
 
     constructor(
-        private _hubSrv: HubService,
-        private _dialog: MatDialog
+        private _hubSrv: HubService
     ) {
 
   }
@@ -20,14 +19,4 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     }
 
-    addNewCar() {
-        const dialogRef = this._dialog.open(AddnewDialogComponent, {
-            width: 'auto',
-            data: this._hubSrv
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-        });
-    }
 }

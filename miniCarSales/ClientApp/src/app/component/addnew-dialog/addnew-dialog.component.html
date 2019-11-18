@@ -1,23 +1,39 @@
 
   <h2 mat-dialog-title>Add New</h2>
   <mat-dialog-content>
-      <mat-radio-group [(ngModel)]="vehicleType">
-        <mat-radio-button value="car">Car</mat-radio-button>
-      </mat-radio-group>
-      <form [formGroup]="addNewForm"  class="add-new-form">
-        <mat-form-field>
-          <input matInput formControlName="make" placeholder="Make">
-          <mat-error *ngIf="makeControl.hasError('required')">
-            Make is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput formControlName="model" placeholder="Model">
-          <mat-error *ngIf="modelControl.hasError('required')">
-            Model is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </form>
+
+    <mat-radio-group [(ngModel)]="vehicleType">
+      <mat-radio-button value="car">Car</mat-radio-button>
+    </mat-radio-group>
+    <form [formGroup]="addNewForm" class="add-new-form">
+
+      <mat-form-field>
+        <mat-label>Make</mat-label>
+        <mat-select formControlName="make">
+          <mat-option *ngFor="let make of _carsSrv.makes | async" [value]="make.name">
+            {{make.name}}
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="makeControl.hasError('required')">
+          Make is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!--
+  <mat-form-field>
+    <input matInput formControlName="make" placeholder="Make">
+    <mat-error *ngIf="makeControl.hasError('required')">
+      Make is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>-->
+
+      <mat-form-field>
+        <input matInput formControlName="model" placeholder="Model">
+        <mat-error *ngIf="modelControl.hasError('required')">
+          Model is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>

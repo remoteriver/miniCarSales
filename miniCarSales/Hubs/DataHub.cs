@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using miniCarSales.Interface;
 using miniCarSales.Models;
 using miniCarSales.Services;
 using System;
@@ -19,21 +20,26 @@ namespace miniCarSales.Hubs
 
         public override Task OnConnectedAsync()
         {
-            SendInitData();
+            SendVehicleCollection();
+            SendVehicleMakes();
             return base.OnConnectedAsync();
         }
 
-        public Task SendInitData()
+        public Task SendVehicleCollection()
         {
-            return Clients.All.SendAsync("InitData", _db.GetDataSet());
+            return Clients.All.SendAsync("VehicleCollection", _db.GetDataSet());
         }
 
-        public Task AddNewVehicle(Car newcar)
+        public Task SendVehicleMakes()
         {
-            _db.Add(newcar);
-            //newcar.Id = 
-            _db.SaveChanges();
-            return Clients.All.SendAsync("InitData", _db.GetDataSet());
+            return Clients.All.SendAsync("VehicleMakes", _db.GetMakeDataSet());
+        }
+
+        public Task AddNewVehicle(Car newVehicle)
+        {
+            _db.AddNewVehicle(newVehicle);
+            SendVehicleCollection();
+            return Task.CompletedTask;
         }
 
         public Task NewMessage(long username, string message)

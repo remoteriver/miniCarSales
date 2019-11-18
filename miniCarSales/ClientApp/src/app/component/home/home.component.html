@@ -1,9 +1,9 @@
-<div *ngIf="_hubSrv.hubConnected | async" fxLayout="column" fxLayoutGap="20px">
-  <div>
-    <button mat-button (click)="addNewCar()">Add New</button>
-  </div>
+<div *ngIf="_hubSrv.hubConnected | async" fxLayout="row" fxLayoutGap="50px">
   <div>
     <app-list-view></app-list-view>
+  </div>
+  <div>
+    <app-list-filter></app-list-filter>
   </div>
 </div>
 <div *ngIf="( _hubSrv.hubConnected | async ) == false">

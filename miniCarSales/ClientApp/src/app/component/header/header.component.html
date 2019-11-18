@@ -3,12 +3,12 @@
     <button mat-icon-button aria-label="Menu" [matMenuTriggerFor]="mainmenu">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Mini CarSales</span>
+    <span><small>Mini CarSales</small></span>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-menu #mainmenu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item (click)="addNewCar()">
     <mat-icon> directions_car</mat-icon>
     <span>Add New Vehicle</span>
   </button>

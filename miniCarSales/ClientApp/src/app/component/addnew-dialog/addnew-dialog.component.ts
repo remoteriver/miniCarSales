@@ -27,15 +27,12 @@ export class AddnewDialogComponent implements OnInit {
         model: this.modelControl
     });
 
-    private _hubSrv: HubService;
-
     constructor(
         private fb: FormBuilder,
         private _carsSrv: CarsService,
-        private _dialogRef: MatDialogRef<AddnewDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: HubService
+        private _hubSrv: HubService,
+        private _dialogRef: MatDialogRef<AddnewDialogComponent>
     ) {
-        this._hubSrv = data;
     }
 
     ngOnInit() {

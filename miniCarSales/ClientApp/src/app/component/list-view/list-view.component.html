@@ -1,10 +1,32 @@
-<div fxLayout="column" fxLayoutGap="20px">
+<div fxLayout="column" fxLayoutGap="50px">
   <ng-container *ngFor="let car of _carsSrv.cars | async">
     <mat-card class="car-card">
-      <img mat-card-image src="placeholder.jpg" alt="placeholder">
+      <img mat-card-image src="
+        {{car.make}}.jpg" alt="placeholder">
       <mat-card-content>
-        {{car.id}}
-        {{car.make}}
+        <div fxLayout="column">
+          <div class="w-100 ml-2" fxLayout="row" fxLayoutAlign="space-between baseline">
+            <h3>
+              {{car.make}}
+              {{car.model}}
+            </h3>
+            <button mat-button aria-label="Like">
+              <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+                <mat-icon>favorite_border</mat-icon><span>Like</span>
+              </div>
+            </button>
+          </div>
+          <mat-divider [inset]="true"></mat-divider>
+          <div>
+            <ul class="mt-3 ml-n3" fxLayout="row wrap" >
+              <li fxFlex="50">Engine: <strong>{{car.engine}}</strong></li>
+              <li fxFlex="50">Doors: <strong>{{car.doors}}</strong></li>
+              <li fxFlex="50">Wheels: <strong>{{car.wheels}}</strong></li>
+              <li fxFlex="50">BodyType: <strong>{{car.bodyType}}</strong></li>
+            </ul>
+
+          </div>
+        </div>
       </mat-card-content>
     </mat-card>
   </ng-container>

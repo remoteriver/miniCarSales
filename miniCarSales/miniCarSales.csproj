@@ -28,10 +28,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\models\Car.ts" />
+    <Compile Remove="ClientApp\src\app\models\Make.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\Car.ts" />
+    <None Remove="ClientApp\src\app\models\Make.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Models\Make.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\Make.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Car.ts" />
   </ItemGroup>
 

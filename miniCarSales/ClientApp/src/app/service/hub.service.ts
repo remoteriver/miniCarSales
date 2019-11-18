@@ -24,13 +24,22 @@ export class HubService {
         });
 
 
-    this.hub.on('InitData', (data) => {
+      this.hub.on('VehicleCollection', (data) => {
 
-      console.log("get InitData:" + data);
+          console.log("get VehicleCollection:" + data);
       if (!isNullOrUndefined(data)) {
-        this._carsSrv.initCollection(data);
+          this._carsSrv.getVehicleCollection(data);
         }
-    });
+      });
+
+
+      this.hub.on('VehicleMakes', (data) => {
+
+          console.log("get VehicleMakes:" + data);
+          if (!isNullOrUndefined(data)) {
+              this._carsSrv.getVehicleMakes(data);
+          }
+      });
 
 
       this.hub.onclose((error) => {

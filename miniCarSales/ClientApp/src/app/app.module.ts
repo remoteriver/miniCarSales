@@ -22,9 +22,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatSelectModule } from '@angular/material/select';
 
 //flex-layout
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ListFilterComponent } from './component/list-filter/list-filter.component';
 
 const materialModules = [
   MatListModule,
@@ -36,7 +40,10 @@ const materialModules = [
     MatRadioModule,
     MatIconModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDividerModule,
+    MatTreeModule,
+    MatSelectModule
 ];
 
 @NgModule({
@@ -45,7 +52,8 @@ const materialModules = [
     HomeComponent,
     ListViewComponent,
     AddnewDialogComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListFilterComponent
   ],
     imports: [
         ReactiveFormsModule,

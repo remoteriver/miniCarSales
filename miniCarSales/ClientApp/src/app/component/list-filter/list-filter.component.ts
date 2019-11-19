@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { CarsService } from '../../service/cars.service';
+import { MatSelectionList } from '@angular/material/list';
 
 @Component({
   selector: 'app-list-filter',
@@ -10,9 +11,12 @@ import { CarsService } from '../../service/cars.service';
 export class ListFilterComponent implements OnInit {
 
 
+  @ViewChild('makes', { static: true }) makeSelectList: MatSelectionList;
+
     constructor(private _carsSrv: CarsService) { }
 
-    ngOnInit() {
+  ngOnInit() {
+    this.makeSelectList.selectionChange.subscribe(change => this._carsSrv.onFilterChanged(this.makeSelectList.selectedOptions ));
   }
 
 }

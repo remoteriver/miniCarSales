@@ -12,7 +12,7 @@ import { HubService } from '../../service/hub.service';
 })
 export class AddnewDialogComponent implements OnInit {
 
-    private vehicleType = "car";
+    private vehicleType = "Car";
 
     private makeControl = new FormControl('', [
         Validators.required
@@ -20,11 +20,21 @@ export class AddnewDialogComponent implements OnInit {
 
     private modelControl = new FormControl('', [
         Validators.required
-    ]);
+  ]);
+
+  private engineControl = new FormControl('', [
+  ]);
+  private doorsControl = new FormControl(4, [
+  ]);
+  private wheelsControl = new FormControl(4, [
+  ]);
 
     private addNewForm = this.fb.group({
         make: this.makeControl,
-        model: this.modelControl
+      model: this.modelControl,
+      engine: this.engineControl,
+      doors: this.doorsControl,
+      wheels: this.wheelsControl,
     });
 
     constructor(
@@ -44,7 +54,7 @@ export class AddnewDialogComponent implements OnInit {
 
         if (this.addNewForm.valid) {
             switch (this.vehicleType) {
-                case "car":
+                case "Car":
                     this.addNewCar();
                     break;
             }
@@ -57,8 +67,11 @@ export class AddnewDialogComponent implements OnInit {
         let newCar = new Car();
         newCar.make = this.makeControl.value;
         newCar.model = this.modelControl.value;
-        newCar.vehicleType = this.vehicleType;
-        //this._carsSrv.addNew(newCar);
+        newCar.engine = this.engineControl.value;
+        newCar.wheels = this.wheelsControl.value;
+        newCar.doors = this.doorsControl.value;
+        newCar.model = this.modelControl.value;
+        newCar.bodyType = this.vehicleType;
         this._hubSrv.sendData("AddNewVehicle", newCar);
     }
 }

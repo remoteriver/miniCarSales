@@ -1,8 +1,7 @@
 <div fxLayout="column" fxLayoutGap="50px">
   <ng-container *ngFor="let car of _carsSrv.cars | async">
     <mat-card class="car-card">
-      <img mat-card-image src="
-        {{car.make}}.jpg" alt="placeholder">
+      <img mat-card-image src="https://minicarsales.s3-ap-southeast-2.amazonaws.com/img/{{car.make}}.jpg" alt="placeholder">
       <mat-card-content>
         <div fxLayout="column">
           <div class="w-100 ml-2" fxLayout="row" fxLayoutAlign="space-between baseline">

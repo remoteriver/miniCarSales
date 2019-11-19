@@ -19,10 +19,10 @@ namespace miniCarSales.Services
         {
             using (var scope = _scopeFactory.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<CarsContext>();
-                dbContext.InitData();
+                var _carSrv = scope.ServiceProvider.GetRequiredService<CarsService>();
+                _carSrv.Seed();
             }
-                return Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

@@ -11,11 +11,11 @@ namespace miniCarSales.Hubs
 {
     public class DataHub: Hub
     {
-        private readonly CarsContext _db;
+        private readonly CarsService _carSrv;
 
-        public DataHub(CarsContext db)
+        public DataHub(CarsService carSrv)
         {
-            _db = db;
+            _carSrv = carSrv;
         }
 
         public override Task OnConnectedAsync()
@@ -27,17 +27,17 @@ namespace miniCarSales.Hubs
 
         public Task SendVehicleCollection()
         {
-            return Clients.All.SendAsync("VehicleCollection", _db.GetDataSet());
+            return Clients.All.SendAsync("VehicleCollection", _carSrv.GetAllVehicles());
         }
 
         public Task SendVehicleMakes()
         {
-            return Clients.All.SendAsync("VehicleMakes", _db.GetMakeDataSet());
+            return Clients.All.SendAsync("VehicleMakes", _carSrv.GetAllVehicleMakes());
         }
 
         public Task AddNewVehicle(Car newVehicle)
         {
-            _db.AddNewVehicle(newVehicle);
+            _carSrv.AddVehicle(newVehicle);
             SendVehicleCollection();
             return Task.CompletedTask;
         }

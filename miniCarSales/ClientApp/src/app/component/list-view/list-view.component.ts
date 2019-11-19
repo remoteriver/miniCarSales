@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class ListViewComponent implements OnInit {
 
 
-  private subs: Subscription[] = [];
+    private subs: Subscription[] = [];
 
     constructor(private _carsSrv: CarsService) { }
 

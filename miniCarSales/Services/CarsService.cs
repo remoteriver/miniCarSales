@@ -17,17 +17,32 @@ namespace miniCarSales.Services
         public void Seed()
         {
             if (!_context.Cars.Any())
+            {
                 _context.Add(
                 new Car
                 {
-                    VehicleType = "SUV",
+                    VehicleType = "Car",
                     Make = "Mercedes-Benz",
                     Model = "GLA200",
                     Engine = "4cyl 2.0L Petrol Turbo",
                     Doors = 4,
                     Wheels = 4,
-                    BodyType = "Car"
+                    BodyType = "SUV"
                 });
+
+                _context.Add(
+                new Car
+                {
+                    VehicleType = "Car",
+                    Make = "Ford",
+                    Model = "Ranger",
+                    Engine = "4cyl 2.0L Petrol Turbo",
+                    Doors = 4,
+                    Wheels = 4,
+                    BodyType = "SUV"
+                });
+            }
+                
 
             if (!_context.CarMakes.Any())
             {

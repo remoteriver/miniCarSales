@@ -1,9 +1,9 @@
 
-  <h2 mat-dialog-title>Add New</h2>
+  <h2 mat-dialog-title>Add New Vehicle</h2>
   <mat-dialog-content>
 
-    <mat-radio-group [(ngModel)]="vehicleType">
-      <mat-radio-button value="Car">Car</mat-radio-button>
+    <mat-radio-group [(ngModel)]="vehicleType" class="ml-n2">
+      <mat-radio-button [checked]="true" value="Car">Car</mat-radio-button>
     </mat-radio-group>
     <form [formGroup]="addNewForm" class="add-new-form">
 
@@ -36,6 +36,15 @@
 
       <mat-form-field>
         <input matInput formControlName="wheels" placeholder="Wheels" type="number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>BodyType</mat-label>
+        <mat-select formControlName="bodyTypeControl">
+          <mat-option *ngFor="let bodyType of bodyTypes" [value]="bodyType">
+            {{bodyType}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
     </form>

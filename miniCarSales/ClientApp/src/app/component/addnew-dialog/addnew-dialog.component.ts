@@ -14,6 +14,8 @@ export class AddnewDialogComponent implements OnInit {
 
     private vehicleType = "Car";
 
+    private bodyTypes = ["SUV", "sedan", "hatchback"];
+
     private makeControl = new FormControl('', [
         Validators.required
     ]);
@@ -29,12 +31,16 @@ export class AddnewDialogComponent implements OnInit {
   private wheelsControl = new FormControl(4, [
   ]);
 
+    private bodyTypeControl = new FormControl('', [
+    ]);
+
     private addNewForm = this.fb.group({
         make: this.makeControl,
       model: this.modelControl,
       engine: this.engineControl,
       doors: this.doorsControl,
-      wheels: this.wheelsControl,
+        wheels: this.wheelsControl,
+        bodyType: this.bodyTypeControl
     });
 
     constructor(
@@ -71,7 +77,8 @@ export class AddnewDialogComponent implements OnInit {
         newCar.wheels = this.wheelsControl.value;
         newCar.doors = this.doorsControl.value;
         newCar.model = this.modelControl.value;
-        newCar.bodyType = this.vehicleType;
+        newCar.vehicleType = this.vehicleType;
+        newCar.bodyType = this.bodyTypeControl.value;
         this._hubSrv.sendData("AddNewVehicle", newCar);
     }
 }

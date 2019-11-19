@@ -14,18 +14,20 @@ namespace miniCarSalesTest
     public class DataHubTests
     {
         [TestMethod]
-        public async Task OnConnectedAsync()
+        public void AddVehicle()
         {
             var mockSet = new Mock<DbSet<Car>>();
 
             var mockContext = new Mock<CarsContext>();
-            mockContext.Setup(m => m.GetDataSet()).Returns(mockSet.Object);
+            mockContext.Setup(m => m.Cars).Returns(mockSet.Object);
+            //mockContext.Setup
 
-            var hub = new DataHub(mockContext.Object);
-            
-            await hub.OnConnectedAsync();
-            
-            Assert.Fail();
+            var service = new CarsService(mockContext.Object);
+            service.AddVehicle(new Car { Id = 0, Make="TestMake", Model="TestModel" });
+
+            mockSet.Verify(m => m.Add(It.IsAny<Car>()), Times.Once());
+            mockContext.Verify(m => m.SaveChanges(), Times.Once());
+
         }
     }
 }

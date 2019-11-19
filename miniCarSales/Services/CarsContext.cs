@@ -10,8 +10,11 @@ namespace miniCarSales.Services
 {
     public class CarsContext :  DbContext
     {
-        public DbSet<Car> Cars { get; set; }
-        public DbSet<Make> CarMakes { get; set; }
+        public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<Make> CarMakes { get; set; }
+
+        public CarsContext()
+        { }
 
         public CarsContext(DbContextOptions<CarsContext> options) : base(options)
         {
